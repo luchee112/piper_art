@@ -1,0 +1,52 @@
+import React from "react";
+
+const artists = [
+  { 
+    name: "Dorin Zoicaș", 
+    image: "https://example.com/dorin-zoicas.jpg", 
+    description: "Născut în Baia Mare, absolvent al UAD Cluj-Napoca.",
+    artwork: {
+      title: "Petit dejeuner",
+      medium: "Oil on canvas",
+      size: "90x90",
+      image: "/mnt/data/Petit dejeuner - Dorin Zoicas.JPG"
+    }
+  },
+  { name: "Vincent van Gogh", image: "https://example.com/van-gogh.jpg", description: "Post-impressionist painter known for Starry Night." },
+  { name: "Claude Monet", image: "https://example.com/monet.jpg", description: "Impressionist painter famous for Water Lilies series." },
+  { name: "Pablo Picasso", image: "https://example.com/picasso.jpg", description: "Pioneer of Cubism, known for Guernica." }
+];
+
+export default function ArtGallery() {
+  return (
+    <div className="min-h-screen bg-gray-100 p-6">
+      <h1 className="text-3xl font-bold text-center mb-6">Virtual Art Gallery</h1>
+      
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-4">Featured Artists</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {artists.map((artist, index) => (
+            <div key={index} className="bg-white rounded-2xl shadow-lg p-4">
+              <img src={artist.image} alt={artist.name} className="rounded-xl mb-4 w-full h-48 object-cover" />
+              <h3 className="text-xl font-bold">{artist.name}</h3>
+              <p className="text-gray-700">{artist.description}</p>
+              {artist.artwork && (
+                <div className="mt-4">
+                  <img src={artist.artwork.image} alt={artist.artwork.title} className="rounded-xl mb-2 w-full h-48 object-cover" />
+                  <h4 className="text-lg font-semibold">{artist.artwork.title}</h4>
+                  <p className="text-gray-700">{artist.artwork.medium}, {artist.artwork.size}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+      
+      <section className="bg-white rounded-2xl shadow-lg p-6">
+        <h2 className="text-2xl font-semibold mb-4">Contact</h2>
+        <p>Email: contact@virtualgallery.com</p>
+        <p>Phone: +123 456 7890</p>
+      </section>
+    </div>
+  );
+}
